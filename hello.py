@@ -3,10 +3,8 @@
 ####secondary tasks include rendering HTML, persisting session state,
 ####parsing form data etc...
 
-
-
 import sys
-
+#for URLs
 from django.conf.urls import url
 #for Views ->inspects HTTP reqs and queries and other data to send
 #to templates
