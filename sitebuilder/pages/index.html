@@ -1,0 +1,29 @@
+
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>Welcome to the site!</h1>
+    <p>It's a rapid porotyping template with django.</p>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <h2>About</h2>
+      <p>{% lorem %}</p>
+    </div>
+    <div class="col-xs-6">
+      <h2>Contact</h2>
+      <p>{% lorem %}</p>
+      <p>
+        <a href="{% url 'page' 'contact' %}" role="button">Contact Us</a>
+      </p>
+    </div>
+  </div>
+</div>
+<hr>
+<footer>
+  <div class="container">
+    <p>&copy; EricRules {% now 'Y' %}</p>
+  </div>
+</footer>

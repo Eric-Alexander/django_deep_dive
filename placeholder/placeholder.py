@@ -88,6 +88,7 @@ class ImageForm(forms.Form):
             textwidth, textheight = draw.textsize(text)
         #if text can fit into the image....
         if textwidth < width and textheight < height:
+            #center text within image
             texttop = (height - textheight) // 2
             textleft = (width - textwidth) // 2
             draw.text((textleft, texttop), text, fill=(255,0,0))
