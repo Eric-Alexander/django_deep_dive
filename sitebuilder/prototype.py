@@ -15,6 +15,8 @@ settings.configure(
   INSTALLED_APPS=(
     'django.contrib.staticfiles',
     'sitebuilder',
+    #compresses static files AND provides LESS SASS compilation!
+    'compressor',
   ),
   TEMPLATES=(
     {
@@ -30,6 +32,14 @@ settings.configure(
   #based upon sitebuilder/management/commands/build.py
   SITE_OUTPUT_DIRECTORY=os.path.join(BASE_DIR, '_build'),
   STATIC_ROOT=os.path.join(BASE_DIR, '_build', 'static'),
+  #files will get unique hash when DEBUG=False
+  STATICFILES_STORAGE='django.contrib.staticfiles.storage.CachedStaticFilesStorage',
+  STATICFILES_FINDERS=(
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+  )
+
 )
 
 

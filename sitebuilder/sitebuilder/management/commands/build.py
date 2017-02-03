@@ -24,6 +24,9 @@ class Command(BaseCommand):
 
   def handle(self, *args, **options):
     """Request pages, generate content, output content"""
+    #relates to STATICFILES_STORAGE
+    settings.DEBUG=False
+    settings.COMPRESS_ENABLED = True
     #check is there is one or more args passed into command
     if args:
       pages = args
@@ -36,6 +39,7 @@ class Command(BaseCommand):
         msg = "Invalid pages: {}".format(', '.join(invalid))
         raise CommandError(msg)
     else:
+      pages = get_pages()
       #if directory exists, wipe clean
       if os.path.exists(settings.SITE_OUTPUT_DIRECTORY):
         shutil.rmtree(settings.SITE_OUTPUT_DIRECTORY)
@@ -44,6 +48,7 @@ class Command(BaseCommand):
     #copy all static resources into STATIC_ROOT dir
     call_command('collectstatic', interactive=False,
         clear=True, verbosity=0)
+    call_command('compress', interactive=False, force=True)
     client = Client()
     for page in pages:
       #grabs all .html resources
